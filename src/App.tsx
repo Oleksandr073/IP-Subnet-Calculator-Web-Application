@@ -4,8 +4,6 @@ import { counterActions } from './redux/counter/slice';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { Counter, SingInBlock } from './components';
 
-import './App.css';
-
 function App() {
   const dispatch = useAppDispatch();
 
