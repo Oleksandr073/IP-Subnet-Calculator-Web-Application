@@ -1,4 +1,4 @@
-import Counter from './Counter';
+import Counter from './components/Counter';
 
 export { Counter };
-export * from './SingInBlock';
+export * from './blocks/auth/SingInBlock';

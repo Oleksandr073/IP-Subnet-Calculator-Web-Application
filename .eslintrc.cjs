@@ -34,10 +34,22 @@ module.exports = {
     'simple-import-sort/exports': 'error',
 
     // disable unused vars check for variables starting with underscore _
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        ignoreRestSiblings: true,
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
+    ],
 
     // disable no empty function to work with saga
     '@typescript-eslint/no-empty-function': 'off',
+
+    'no-console': 'error',
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    '@typescript-eslint/no-non-null-assertion': 'error',
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
   },
   overrides: [
     // unit and integration testing configuration

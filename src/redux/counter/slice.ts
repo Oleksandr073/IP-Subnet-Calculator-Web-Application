@@ -1,10 +1,10 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-export interface ICounterSlice {
+export type CounterSlice = {
   value: number;
-}
+};
 
-const initialState: ICounterSlice = {
+const initialState: CounterSlice = {
   value: 0,
 };
 

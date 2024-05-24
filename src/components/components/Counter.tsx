@@ -1,17 +1,17 @@
-interface TCounterProps {
+type Props = {
   value?: number;
   onIncrement?: () => void;
   onDecrement?: () => void;
   onIncrementAsync?: () => void;
   onDecrementAsync?: () => void;
-}
-const Counter = ({
+};
+export const Counter = ({
   value,
   onIncrement,
   onDecrement,
   onIncrementAsync,
   onDecrementAsync,
-}: TCounterProps): JSX.Element => {
+}: Props) => {
   return (
     <div>
       <button onClick={onIncrementAsync} className="button">
