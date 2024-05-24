@@ -1,1 +1,2 @@
-export * from './SingInBlock';
+export * from './SignInBlock';
+export * from './SignOutBlock';

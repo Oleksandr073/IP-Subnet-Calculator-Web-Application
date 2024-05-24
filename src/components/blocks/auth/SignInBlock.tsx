@@ -2,12 +2,10 @@ import { signInWithPopup } from 'firebase/auth';
 
 import { auth, provider } from '../../../config';
 
-export const SingInBlock = () => {
+export const SignInBlock = () => {
   const handleSignIn = async () => {
     try {
-      const data = await signInWithPopup(auth, provider);
-      // eslint-disable-next-line no-console
-      console.log(data.user);
+      await signInWithPopup(auth, provider);
     } catch {
       // nothing to do
     }
