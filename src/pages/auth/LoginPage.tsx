@@ -1,5 +1,4 @@
-import { SignInBlock } from '../../components';
-import { SignOutBlock } from '../../components/blocks';
+import { SignInBlock, SignOutBlock } from '../../components/blocks';
 import { authSelectors } from '../../redux/auth/selectors';
 import { useAppSelector } from '../../redux/hooks';
 
