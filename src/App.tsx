@@ -2,7 +2,7 @@ import reactLogo from './assets/react.svg';
 import viteLogo from './assets/vite.svg';
 import { counterActions } from './redux/counter/slice';
 import { useAppDispatch, useAppSelector } from './redux/hooks';
-import { Counter } from './components';
+import { Counter, SingInBlock } from './components';
 
 import './App.css';
 
@@ -29,6 +29,7 @@ function App() {
 
   return (
     <>
+      <SingInBlock />
       <div>
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src={viteLogo} className="logo" alt="Vite logo" />
