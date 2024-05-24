@@ -25,7 +25,10 @@ module.exports = {
   },
   plugins: ['react-refresh', 'simple-import-sort'],
   rules: {
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
     // enforce import and export sorting
     'simple-import-sort/imports': 'error',
     'simple-import-sort/exports': 'error',
