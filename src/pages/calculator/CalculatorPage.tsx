@@ -1,7 +1,7 @@
 export const CalculatorPage = () => {
   return (
     <div>
-      <p>Calculator Page</p>
+      <h1>Calculator Page</h1>
     </div>
   );
 };

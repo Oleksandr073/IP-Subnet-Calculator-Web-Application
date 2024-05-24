@@ -1,19 +1,10 @@
-import { SignInBlock, SignOutBlock } from '../../components/blocks';
-import { authSelectors } from '../../redux/auth/selectors';
-import { useAppSelector } from '../../redux/hooks';
+import { SignInBlock } from '../../components/blocks';
 
 export const LoginPage = () => {
-  const isUserLoggedIn = useAppSelector(authSelectors.selectIsUserLoggedIn);
   return (
     <div>
-      {isUserLoggedIn ? (
-        <SignOutBlock />
-      ) : (
-        <div>
-          <p>Login Page</p>
-          <SignInBlock />
-        </div>
-      )}
+      <h1>Login Page</h1>
+      <SignInBlock />
     </div>
   );
 };

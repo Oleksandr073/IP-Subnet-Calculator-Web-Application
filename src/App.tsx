@@ -1,7 +1,23 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 
 import { MainLayout } from './components/layout';
-import { CalculatorPage, LoginPage, NotFoundPage } from './pages';
+import { authSelectors } from './redux/auth/selectors';
+import { useAppSelector } from './redux/hooks';
+import { CalculatorPage, HomePage, LoginPage, NotFoundPage } from './pages';
+
+const Protected = ({ children }: { children: React.ReactNode }) => {
+  const isUserLoggedIn = useAppSelector(authSelectors.selectIsUserLoggedIn);
+  return isUserLoggedIn ? children : <Navigate to="/login" replace />;
+};
+
+const PublicOnlyRoute = ({ children }: { children: React.ReactNode }) => {
+  const isUserLoggedIn = useAppSelector(authSelectors.selectIsUserLoggedIn);
+  return isUserLoggedIn ? <Navigate to="/" replace /> : children;
+};
 
 const router = createBrowserRouter([
   {
@@ -11,11 +27,23 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <LoginPage />,
+        element: <HomePage />,
+      },
+      {
+        path: '/login',
+        element: (
+          <PublicOnlyRoute>
+            <LoginPage />
+          </PublicOnlyRoute>
+        ),
       },
       {
         path: '/calculator',
-        element: <CalculatorPage />,
+        element: (
+          <Protected>
+            <CalculatorPage />
+          </Protected>
+        ),
       },
     ],
   },
