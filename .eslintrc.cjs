@@ -46,10 +46,49 @@ module.exports = {
     // disable no empty function to work with saga
     '@typescript-eslint/no-empty-function': 'off',
 
+    'import/prefer-default-export': 'off',
+    'no-nested-ternary': 'off',
     'no-console': 'error',
     'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
     '@typescript-eslint/no-non-null-assertion': 'error',
     '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+    'no-param-reassign': [
+      'error',
+      {
+        props: true,
+        ignorePropertyModificationsFor: ['state'],
+        ignorePropertyModificationsForRegex: ['.*Ref$'],
+      },
+    ],
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/no-unused-expressions': [
+      'error',
+      { allowTaggedTemplates: true },
+    ],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        ignoreRestSiblings: true,
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+      },
+    ],
+    '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'error',
+    '@typescript-eslint/unbound-method': 'off',
+    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/explicit-member-accessibility': [
+      'error',
+      { accessibility: 'no-public' },
+    ],
+    '@typescript-eslint/prefer-optional-chain': 'error',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/naming-convention': 'off',
+    'no-void': 'off',
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/no-misused-promises': 'off',
   },
   overrides: [
     // unit and integration testing configuration
