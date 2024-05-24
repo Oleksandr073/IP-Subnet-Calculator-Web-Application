@@ -11,7 +11,7 @@ type EmitterType = {
   user: User | null;
 };
 
-function createAuthStateChannel() {
+function createAuthStateChangeChannel() {
   return eventChannel<EmitterType>((emitter) => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       emitter({ user });
@@ -21,9 +21,9 @@ function createAuthStateChannel() {
 }
 
 export function* authStateWatcher() {
-  const authStateChannel = (yield call(createAuthStateChannel)) as ReturnType<
-    typeof createAuthStateChannel
-  >;
+  const authStateChannel = (yield call(
+    createAuthStateChangeChannel,
+  )) as ReturnType<typeof createAuthStateChangeChannel>;
 
   while (true) {
     const { user } = (yield take(authStateChannel)) as EmitterType;
