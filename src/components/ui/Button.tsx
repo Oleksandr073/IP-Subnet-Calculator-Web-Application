@@ -9,7 +9,6 @@ type BaseProps = {
 type ButtonProps = {
   isWebLink?: false;
   isAppLink?: false;
-  isAppNavLink?: false;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 type WebLinkProps = {

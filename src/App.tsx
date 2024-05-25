@@ -30,7 +30,6 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
-    errorElement: <NotFoundPage />,
     children: [
       {
         path: '/',
@@ -65,6 +64,10 @@ const router = createBrowserRouter([
             <UserPage />
           </Protected>
         ),
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
       },
     ],
   },
