@@ -7,7 +7,13 @@ import {
 import { MainLayout } from './components/layout';
 import { authSelectors } from './redux/auth/selectors';
 import { useAppSelector } from './redux/hooks';
-import { CalculatorPage, HomePage, LoginPage, NotFoundPage } from './pages';
+import {
+  CalculatorPage,
+  HomePage,
+  LoginPage,
+  NotFoundPage,
+  UserPage,
+} from './pages';
 
 const Protected = ({ children }: { children: React.ReactNode }) => {
   const isUserLoggedIn = useAppSelector(authSelectors.selectIsUserLoggedIn);
@@ -30,6 +36,10 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
+        path: '/calculator',
+        element: <CalculatorPage />,
+      },
+      {
         path: '/login',
         element: (
           <PublicOnlyRoute>
@@ -38,10 +48,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/calculator',
+        path: '/user',
         element: (
           <Protected>
-            <CalculatorPage />
+            <UserPage />
           </Protected>
         ),
       },

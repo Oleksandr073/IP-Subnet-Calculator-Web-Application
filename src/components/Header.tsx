@@ -28,8 +28,11 @@ export const Header = () => {
               <Link to="/">Home page</Link>
             </li>
             <li>
+              <Link to="/calculator">Calculator Page</Link>
+            </li>
+            <li>
               {isUserLoggedIn ? (
-                <Link to="/calculator">Calculator Page</Link>
+                <Link to="/user">User Page</Link>
               ) : (
                 <Link to="/login">Log In</Link>
               )}
