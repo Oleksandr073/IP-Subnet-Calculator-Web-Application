@@ -14,9 +14,12 @@ export const CalculatorPage = () => {
         <li>
           <Link
             to=""
-            className={clsx('border border-gray-400 py-2 px-4', {
-              'bg-gray-200': isIPInformation,
-            })}
+            className={clsx(
+              'border border-r-0 border-gray-400 py-2 px-4 rounded-l-md',
+              {
+                'bg-blue-100': isIPInformation,
+              },
+            )}
           >
             IP Information
           </Link>
@@ -24,8 +27,8 @@ export const CalculatorPage = () => {
         <li>
           <Link
             to="subnetting"
-            className={clsx('border border-gray-400 py-2 px-4', {
-              'bg-gray-200': isIPSubnetting,
+            className={clsx('border border-gray-400 py-2 px-4 rounded-r-md', {
+              'bg-blue-100': isIPSubnetting,
             })}
           >
             IP Subnetting
