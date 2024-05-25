@@ -37,8 +37,10 @@ export function* authStateWatcher() {
     createAuthStateChangeChannel,
   )) as ReturnType<typeof createAuthStateChangeChannel>;
 
+  yield put(authSlice.actions.setIsUserFetching(true));
   while (true) {
     const { user } = (yield take(authStateChannel)) as EmitterType;
+    yield put(authSlice.actions.setIsUserFetching(false));
     if (!user) {
       yield put(authSlice.actions.setUserInfo(null));
     } else {

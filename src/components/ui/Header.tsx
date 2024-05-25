@@ -5,12 +5,14 @@ import { authSelectors } from '../../redux/auth/selectors';
 import { authSlice } from '../../redux/auth/slice';
 import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
+import { Loader } from './Loader';
 import { Logo } from './Logo';
 
 export const Header = () => {
   const dispatch = useAppDispatch();
 
   const isUserLoggedIn = useAppSelector(authSelectors.selectIsUserLoggedIn);
+  const isUserFetching = useAppSelector(authSelectors.selectIsUserFetching);
 
   const handleLogOut = () => {
     dispatch(authSlice.actions.logOut());
@@ -54,46 +56,53 @@ export const Header = () => {
                 Calculator
               </NavLink>
             </li>
-            <li>
-              {isUserLoggedIn ? (
-                <NavLink
-                  to="/user"
-                  className={({ isActive }) =>
-                    clsx(
-                      'py-2 px-1 font-medium transition-[color] duration-300 hover:text-blue-700',
-                      {
-                        'text-white': isActive,
-                      },
-                    )
-                  }
-                >
-                  User
-                </NavLink>
-              ) : (
-                <NavLink
-                  to="/login"
-                  className={({ isActive }) =>
-                    clsx(
-                      'py-2 px-1 font-medium transition-[color] duration-300 hover:text-blue-700',
-                      {
-                        'text-white': isActive,
-                      },
-                    )
-                  }
-                >
-                  Log In
-                </NavLink>
-              )}
-            </li>
+            {!isUserFetching && (
+              <li>
+                {isUserLoggedIn ? (
+                  <NavLink
+                    to="/user"
+                    className={({ isActive }) =>
+                      clsx(
+                        'py-2 px-1 font-medium transition-[color] duration-300 hover:text-blue-700',
+                        {
+                          'text-white': isActive,
+                        },
+                      )
+                    }
+                  >
+                    User
+                  </NavLink>
+                ) : (
+                  <NavLink
+                    to="/login"
+                    className={({ isActive }) =>
+                      clsx(
+                        'py-2 px-1 font-medium transition-[color] duration-300 hover:text-blue-700',
+                        {
+                          'text-white': isActive,
+                        },
+                      )
+                    }
+                  >
+                    Log In
+                  </NavLink>
+                )}
+              </li>
+            )}
           </ul>
         </nav>
-        {isUserLoggedIn && (
+        {!isUserFetching && isUserLoggedIn && (
           <button
             onClick={handleLogOut}
             className="ml-5 py-2 px-1 font-medium transition-[color] duration-300 hover:text-blue-700"
           >
             Log Out
           </button>
+        )}
+        {isUserFetching && (
+          <div className="ml-5">
+            <Loader color="white" />
+          </div>
         )}
       </div>
     </header>

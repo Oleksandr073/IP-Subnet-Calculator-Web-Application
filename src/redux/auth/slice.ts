@@ -4,10 +4,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type State = {
   user: UserInfo | null;
+  isUserFetching: boolean;
 };
 
 const initialState: State = {
   user: null,
+  isUserFetching: false,
 };
 
 export const authSlice = createSlice({
@@ -19,6 +21,12 @@ export const authSlice = createSlice({
       { payload: user }: PayloadAction<UserInfo | null>,
     ) {
       state.user = user;
+    },
+    setIsUserFetching(
+      state: State,
+      { payload: isUserFetching }: PayloadAction<boolean>,
+    ) {
+      state.isUserFetching = isUserFetching;
     },
     logOut() {},
   },
