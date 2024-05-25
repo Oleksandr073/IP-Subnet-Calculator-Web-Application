@@ -20,9 +20,9 @@ export const Header = () => {
   };
 
   return (
-    <header className="py-3 w-full bg-green-300 fixed">
+    <header className="py-3 w-full bg-blue-300 fixed">
       <div className="container flex items-center">
-        <Link to="/" className="mr-auto" title="IP Calculator">
+        <Link to="/" className="mr-auto font-medium" title="IP Calculator">
           <Logo />
         </Link>
         <nav>
@@ -30,7 +30,14 @@ export const Header = () => {
             <li>
               <NavLink
                 to="/"
-                className={({ isActive }) => clsx({ 'text-white': isActive })}
+                className={({ isActive }) =>
+                  clsx(
+                    'font-medium transition-[color] duration-300 hover:text-blue-700',
+                    {
+                      'text-white': isActive,
+                    },
+                  )
+                }
               >
                 Home page
               </NavLink>
@@ -38,7 +45,14 @@ export const Header = () => {
             <li>
               <NavLink
                 to="/calculator"
-                className={({ isActive }) => clsx({ 'text-white': isActive })}
+                className={({ isActive }) =>
+                  clsx(
+                    'font-medium transition-[color] duration-300 hover:text-blue-700',
+                    {
+                      'text-white': isActive,
+                    },
+                  )
+                }
               >
                 Calculator Page
               </NavLink>
@@ -47,14 +61,28 @@ export const Header = () => {
               {isUserLoggedIn ? (
                 <NavLink
                   to="/user"
-                  className={({ isActive }) => clsx({ 'text-white': isActive })}
+                  className={({ isActive }) =>
+                    clsx(
+                      'font-medium transition-[color] duration-300 hover:text-blue-700',
+                      {
+                        'text-white': isActive,
+                      },
+                    )
+                  }
                 >
                   User Page
                 </NavLink>
               ) : (
                 <NavLink
                   to="/login"
-                  className={({ isActive }) => clsx({ 'text-white': isActive })}
+                  className={({ isActive }) =>
+                    clsx(
+                      'font-medium transition-[color] duration-300 hover:text-blue-700',
+                      {
+                        'text-white': isActive,
+                      },
+                    )
+                  }
                 >
                   Log In
                 </NavLink>
@@ -63,7 +91,10 @@ export const Header = () => {
           </ul>
         </nav>
         {isUserLoggedIn && (
-          <button onClick={handleLogOut} className="ml-5">
+          <button
+            onClick={handleLogOut}
+            className="ml-5 font-medium transition-[color] duration-300 hover:text-blue-700"
+          >
             Log Out
           </button>
         )}
