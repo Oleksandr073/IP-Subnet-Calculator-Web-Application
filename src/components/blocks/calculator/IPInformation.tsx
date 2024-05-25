@@ -28,21 +28,25 @@ export const IPInformation = () => {
 
   return (
     <div>
-      <form onSubmit={onSubmitHandler} className="mb-4">
-        <div className="flex items-end mb-1">
-          <Input
-            value={ipAddress}
-            onChange={setIpAddress}
-            name="ip-address"
-            label="Address (Host or Network)"
-          />
-          <span className="mb-0.5">&nbsp;/&nbsp;</span>
-          <Input
-            value={mask}
-            onChange={setMask}
-            name="netmask"
-            label="Netmask"
-          />
+      <form onSubmit={onSubmitHandler}>
+        <div className="flex flex-wrap items-end mb-3">
+          <div className="mt-1">
+            <Input
+              value={ipAddress}
+              onChange={setIpAddress}
+              name="ip-address"
+              label="Address (Host or Network)"
+            />
+          </div>
+          <div className="flex items-end mt-1">
+            <span className="mb-0.5">&nbsp;/&nbsp;</span>
+            <Input
+              value={mask}
+              onChange={setMask}
+              name="netmask"
+              label="Netmask"
+            />
+          </div>
         </div>
         <button className="border" type="submit">
           Calculate!
