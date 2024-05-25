@@ -117,3 +117,34 @@ export function calculateIPInfo(inputAddress: string, inputMask: string) {
 }
 
 export type IPInfo = ReturnType<typeof calculateIPInfo>;
+
+export const getSubnetsDecimalAddresses = (
+  networkIpBinary: string,
+  oldMask: string,
+  newMask: string,
+) => {
+  const ipBinaryNumber = networkIpBinary.replace(/\./g, '');
+  const fromMask = Number(oldMask);
+  const toMask = Number(newMask);
+
+  const subnetsBinaryWithOutDots: string[] = [];
+
+  const newBitsAmount = toMask - fromMask;
+
+  const subnetsAmount = 2 ** newBitsAmount;
+
+  for (let i = 0; i < subnetsAmount; i++) {
+    const newSubnetEnding = toBinary(i);
+    const newSubnetEndingStr =
+      newSubnetEnding.length < newBitsAmount
+        ? '0'.repeat(newBitsAmount - newSubnetEnding.length) + newSubnetEnding
+        : newSubnetEnding;
+    const newSubnetBinary =
+      ipBinaryNumber.slice(0, fromMask) +
+      newSubnetEndingStr +
+      '0'.repeat(32 - toMask);
+    subnetsBinaryWithOutDots.push(newSubnetBinary);
+  }
+
+  return subnetsBinaryWithOutDots.map(addDotsToIP).map(ipToDecimal);
+};
