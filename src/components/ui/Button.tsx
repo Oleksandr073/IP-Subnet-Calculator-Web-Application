@@ -2,6 +2,10 @@ import { AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react';
 import clsx from 'clsx';
 import { Link, LinkProps } from 'react-router-dom';
 
+type BaseProps = {
+  text: string;
+};
+
 type ButtonProps = {
   isWebLink?: false;
   isAppLink?: false;
@@ -18,11 +22,13 @@ type AppLinkProps = {
   isAppLink: true;
 } & LinkProps;
 
-type Props = ButtonProps | WebLinkProps | AppLinkProps;
+type Props = BaseProps & (ButtonProps | WebLinkProps | AppLinkProps);
 export const Button = ({
   isWebLink,
   isAppLink,
   className,
+  text,
+  children: _,
   ...props
 }: Props) => {
   const buttonProps = props as ButtonProps;
@@ -35,10 +41,22 @@ export const Button = ({
   );
 
   if (isWebLink) {
-    return <a {...webLinkProps} className={classNames} />;
+    return (
+      <a {...webLinkProps} className={classNames}>
+        {text}
+      </a>
+    );
   }
   if (isAppLink) {
-    return <Link {...appLinkProps} className={classNames} />;
+    return (
+      <Link {...appLinkProps} className={classNames}>
+        {text}
+      </Link>
+    );
   }
-  return <button {...buttonProps} className={classNames} />;
+  return (
+    <button {...buttonProps} className={classNames}>
+      {text}
+    </button>
+  );
 };

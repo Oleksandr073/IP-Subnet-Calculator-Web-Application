@@ -1,6 +1,7 @@
 import { signInWithPopup } from 'firebase/auth';
 
 import { auth, provider } from '../../../config';
+import { Button } from '../../ui';
 
 export const SignInBlock = () => {
   const handleSignIn = async () => {
@@ -17,7 +18,7 @@ export const SignInBlock = () => {
 
   return (
     <div>
-      <button onClick={handleClick}>Sing In with Google</button>
+      <Button onClick={handleClick} text="Sing In with Google" />
     </div>
   );
 };

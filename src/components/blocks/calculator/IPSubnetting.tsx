@@ -58,9 +58,7 @@ export const IPSubnetting = () => {
             />
           </div>
         </div>
-        <Button className="border" type="submit">
-          Calculate!
-        </Button>
+        <Button text="Calculate!" type="submit" />
       </form>
 
       {error && <p>{error}</p>}

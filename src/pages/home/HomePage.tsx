@@ -54,9 +54,7 @@ export const HomePage = () => {
 
       <p className="mb-5">Happy subnetting!</p>
 
-      <Button isAppLink to="/calculator">
-        Go to IP Calculator
-      </Button>
+      <Button text="Go to IP Calculator" isAppLink to="/calculator" />
     </div>
   );
 };
