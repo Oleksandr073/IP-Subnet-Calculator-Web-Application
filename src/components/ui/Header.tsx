@@ -32,7 +32,7 @@ export const Header = () => {
                 to="/"
                 className={({ isActive }) =>
                   clsx(
-                    'font-medium transition-[color] duration-300 hover:text-blue-700',
+                    'py-2 px-1 font-medium transition-[color] duration-300 hover:text-blue-700',
                     {
                       'text-white': isActive,
                     },
@@ -47,7 +47,7 @@ export const Header = () => {
                 to="/calculator"
                 className={({ isActive }) =>
                   clsx(
-                    'font-medium transition-[color] duration-300 hover:text-blue-700',
+                    'py-2 px-1 font-medium transition-[color] duration-300 hover:text-blue-700',
                     {
                       'text-white': isActive,
                     },
@@ -63,7 +63,7 @@ export const Header = () => {
                   to="/user"
                   className={({ isActive }) =>
                     clsx(
-                      'font-medium transition-[color] duration-300 hover:text-blue-700',
+                      'py-2 px-1 font-medium transition-[color] duration-300 hover:text-blue-700',
                       {
                         'text-white': isActive,
                       },
@@ -77,7 +77,7 @@ export const Header = () => {
                   to="/login"
                   className={({ isActive }) =>
                     clsx(
-                      'font-medium transition-[color] duration-300 hover:text-blue-700',
+                      'py-2 px-1 font-medium transition-[color] duration-300 hover:text-blue-700',
                       {
                         'text-white': isActive,
                       },
@@ -93,7 +93,7 @@ export const Header = () => {
         {isUserLoggedIn && (
           <button
             onClick={handleLogOut}
-            className="ml-5 font-medium transition-[color] duration-300 hover:text-blue-700"
+            className="ml-5 py-2 px-1 font-medium transition-[color] duration-300 hover:text-blue-700"
           >
             Log Out
           </button>
