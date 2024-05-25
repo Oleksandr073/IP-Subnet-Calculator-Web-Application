@@ -9,7 +9,7 @@ export const NotFoundPage = () => {
       <div className="mb-4">
         <b className="font-bold text-2xl">Not Fount Page</b>
       </div>
-      <Button text="Home Page" isAppLink to="/" />
+      <Button text="Home" isAppLink to="/" />
     </div>
   );
 };

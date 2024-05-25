@@ -39,7 +39,7 @@ export const Header = () => {
                   )
                 }
               >
-                Home page
+                Home
               </NavLink>
             </li>
             <li>
@@ -54,7 +54,7 @@ export const Header = () => {
                   )
                 }
               >
-                Calculator Page
+                Calculator
               </NavLink>
             </li>
             <li>
@@ -70,7 +70,7 @@ export const Header = () => {
                     )
                   }
                 >
-                  User Page
+                  User
                 </NavLink>
               ) : (
                 <NavLink
