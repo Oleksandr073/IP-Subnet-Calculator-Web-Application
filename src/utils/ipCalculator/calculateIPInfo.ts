@@ -16,6 +16,23 @@ const ipToDecimal = (binaryIp: string) =>
   binaryIp.split('.').map(toDecimal).join('.');
 const addDotsToIP = (ip: string) =>
   ip.replace(/(\d{8})(\d{8})(\d{8})(\d{8})/, '$1.$2.$3.$4');
+const addSpaceAfterMaskBits = (ipBinary: string, mask: number) => {
+  let count = 0;
+  let index = 0;
+
+  while (count < mask && index < ipBinary.length) {
+    if (ipBinary[index] !== '.') {
+      count = count + 1;
+    }
+    index = index + 1;
+  }
+
+  if (count < mask) {
+    return ipBinary;
+  }
+
+  return ipBinary.slice(0, index) + ' ' + ipBinary.slice(index);
+};
 
 export function calculateIPInfo(inputAddress: string, inputMask: string) {
   const netmask = Number(inputMask);
@@ -64,30 +81,37 @@ export function calculateIPInfo(inputAddress: string, inputMask: string) {
     address: {
       decimal: inputAddress,
       binary: binaryAddress,
+      binaryWithMask: addSpaceAfterMaskBits(binaryAddress, netmask),
     },
     netmask: {
       decimal: decimalNetmask,
       binary: binaryNetmask,
+      binaryWithMask: addSpaceAfterMaskBits(binaryNetmask, netmask),
     },
     wildcard: {
       decimal: decimalWildcard,
       binary: binaryWildcard,
+      binaryWithMask: addSpaceAfterMaskBits(binaryWildcard, netmask),
     },
     network: {
       decimal: decimalNetwork,
       binary: binaryNetwork,
+      binaryWithMask: addSpaceAfterMaskBits(binaryNetwork, netmask),
     },
     broadcast: {
       decimal: decimalBroadcast,
       binary: binaryBroadcast,
+      binaryWithMask: addSpaceAfterMaskBits(binaryBroadcast, netmask),
     },
     hostMin: {
       decimal: decimalHostMin,
       binary: binaryHostMin,
+      binaryWithMask: addSpaceAfterMaskBits(binaryHostMin, netmask),
     },
     hostMax: {
       decimal: decimalHostMax,
       binary: binaryHostMax,
+      binaryWithMask: addSpaceAfterMaskBits(binaryHostMax, netmask),
     },
   };
 }

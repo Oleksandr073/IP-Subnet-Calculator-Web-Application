@@ -1,7 +1,8 @@
 import { FormEventHandler, useState } from 'react';
 import { isIPv4 } from 'is-ip';
 
-import { calculateIPInfo, IPInfo } from './calculateIPInfo';
+import { IPInfoTable } from '../../components/blocks';
+import { calculateIPInfo, IPInfo } from '../../utils/ipCalculator';
 
 export const CalculatorPage = () => {
   const [ipAddress, setIpAddress] = useState('');
@@ -24,8 +25,9 @@ export const CalculatorPage = () => {
   };
 
   return (
-    <div className="container mx-auto">
-      <h1>Calculator Page</h1>
+    <div className="container mx-auto pt-5">
+      <h1 className="font-semibold">IP Calculator / IP Subnetting</h1>
+
       <form onSubmit={onSubmitHandler}>
         <input
           className="border"
@@ -44,51 +46,7 @@ export const CalculatorPage = () => {
 
       {error && <p>{error}</p>}
 
-      {ipInfo && (
-        <table className="table-fixed">
-          <tbody>
-            <tr>
-              <td>Address</td>
-              <td>{ipInfo.address.decimal}</td>
-              <td>{ipInfo.address.binary}</td>
-            </tr>
-            <tr>
-              <td>Netmask</td>
-              <td>{ipInfo.netmask.decimal}</td>
-              <td>{ipInfo.netmask.binary}</td>
-            </tr>
-            <tr>
-              <td>Wildcard</td>
-              <td>{ipInfo.wildcard.decimal}</td>
-              <td>{ipInfo.wildcard.binary}</td>
-            </tr>
-            <tr>
-              <td>Network</td>
-              <td>{ipInfo.network.decimal}</td>
-              <td>{ipInfo.network.binary}</td>
-            </tr>
-            <tr>
-              <td>Broadcast</td>
-              <td>{ipInfo.broadcast.decimal}</td>
-              <td>{ipInfo.broadcast.binary}</td>
-            </tr>
-            <tr>
-              <td>HostMin</td>
-              <td>{ipInfo.hostMin.decimal}</td>
-              <td>{ipInfo.hostMin.binary}</td>
-            </tr>
-            <tr>
-              <td>HostMax</td>
-              <td>{ipInfo.hostMax.decimal}</td>
-              <td>{ipInfo.hostMax.binary}</td>
-            </tr>
-            <tr>
-              <td>Hosts</td>
-              <td>{ipInfo.hostsCount}</td>
-            </tr>
-          </tbody>
-        </table>
-      )}
+      {ipInfo && <IPInfoTable ipInfo={ipInfo} />}
     </div>
   );
 };
