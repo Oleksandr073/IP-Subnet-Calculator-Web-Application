@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { signOut } from 'firebase/auth';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -29,7 +30,7 @@ export const Header = () => {
             <li>
               <NavLink
                 to="/"
-                className={({ isActive }) => (isActive ? 'text-white' : '')}
+                className={({ isActive }) => clsx({ 'text-white': isActive })}
               >
                 Home page
               </NavLink>
@@ -37,7 +38,7 @@ export const Header = () => {
             <li>
               <NavLink
                 to="/calculator"
-                className={({ isActive }) => (isActive ? 'text-white' : '')}
+                className={({ isActive }) => clsx({ 'text-white': isActive })}
               >
                 Calculator Page
               </NavLink>
@@ -46,14 +47,14 @@ export const Header = () => {
               {isUserLoggedIn ? (
                 <NavLink
                   to="/user"
-                  className={({ isActive }) => (isActive ? 'text-white' : '')}
+                  className={({ isActive }) => clsx({ 'text-white': isActive })}
                 >
                   User Page
                 </NavLink>
               ) : (
                 <NavLink
                   to="/login"
-                  className={({ isActive }) => (isActive ? 'text-white' : '')}
+                  className={({ isActive }) => clsx({ 'text-white': isActive })}
                 >
                   Log In
                 </NavLink>
