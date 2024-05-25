@@ -2,6 +2,7 @@ import { FormEventHandler, useState } from 'react';
 import { isIPv4 } from 'is-ip';
 
 import { calculateIPInfo, IPInfo } from '../../../utils';
+import { Input } from '../../ui';
 
 import { IPInfoTable } from './IPInfoTable';
 
@@ -27,17 +28,22 @@ export const IPInformation = () => {
 
   return (
     <div>
-      <form onSubmit={onSubmitHandler}>
-        <input
-          className="border"
-          value={ipAddress}
-          onChange={(e) => setIpAddress(e.target.value)}
-        />
-        <input
-          className="border"
-          value={mask}
-          onChange={(e) => setMask(e.target.value)}
-        />
+      <form onSubmit={onSubmitHandler} className="mb-4">
+        <div className="flex items-end mb-1">
+          <Input
+            value={ipAddress}
+            onChange={setIpAddress}
+            name="ip-address"
+            label="Address (Host or Network)"
+          />
+          <span className="mb-0.5">&nbsp;/&nbsp;</span>
+          <Input
+            value={mask}
+            onChange={setMask}
+            name="netmask"
+            label="Netmask"
+          />
+        </div>
         <button className="border" type="submit">
           Calculate!
         </button>
