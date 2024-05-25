@@ -27,13 +27,16 @@ export const SimpleIPCalculatorForm = ({
     if (!ipAddress || !mask || (isMovingMask && !newMask)) {
       return;
     }
-    if (
-      !isIPv4(ipAddress) ||
-      Number(mask) < 1 ||
-      Number(mask) > 31 ||
-      (isMovingMask && Number(newMask) >= Number(mask))
-    ) {
-      setError('input IP or mask is not correct');
+    if (!isIPv4(ipAddress)) {
+      setError('input IP is not correct');
+      return;
+    }
+    if (Number(mask) < 1 || Number(mask) > 31) {
+      setError('input mask is not correct');
+      return;
+    }
+    if (isMovingMask && Number(newMask) <= Number(mask)) {
+      setError('input new mask is not correct');
       return;
     }
     setError('');
