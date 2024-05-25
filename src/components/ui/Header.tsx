@@ -1,5 +1,5 @@
 import { signOut } from 'firebase/auth';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import { auth } from '../../config';
 import { authSelectors } from '../../redux/auth/selectors';
@@ -25,16 +25,36 @@ export const Header = () => {
         <nav>
           <ul className="flex gap-5">
             <li>
-              <Link to="/">Home page</Link>
+              <NavLink
+                to="/"
+                className={({ isActive }) => (isActive ? 'text-white' : '')}
+              >
+                Home page
+              </NavLink>
             </li>
             <li>
-              <Link to="/calculator">Calculator Page</Link>
+              <NavLink
+                to="/calculator"
+                className={({ isActive }) => (isActive ? 'text-white' : '')}
+              >
+                Calculator Page
+              </NavLink>
             </li>
             <li>
               {isUserLoggedIn ? (
-                <Link to="/user">User Page</Link>
+                <NavLink
+                  to="/user"
+                  className={({ isActive }) => (isActive ? 'text-white' : '')}
+                >
+                  User Page
+                </NavLink>
               ) : (
-                <Link to="/login">Log In</Link>
+                <NavLink
+                  to="/login"
+                  className={({ isActive }) => (isActive ? 'text-white' : '')}
+                >
+                  Log In
+                </NavLink>
               )}
             </li>
           </ul>
