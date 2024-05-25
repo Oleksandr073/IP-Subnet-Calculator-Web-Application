@@ -2,7 +2,7 @@ import { FormEventHandler, useState } from 'react';
 import { isIPv4 } from 'is-ip';
 
 import { calculateIPInfo, IPInfo } from '../../../utils';
-import { Input } from '../../ui';
+import { Button, Input } from '../../ui';
 
 import { IPInfoTable } from './IPInfoTable';
 
@@ -58,9 +58,9 @@ export const IPSubnetting = () => {
             />
           </div>
         </div>
-        <button className="border" type="submit">
+        <Button className="border" type="submit">
           Calculate!
-        </button>
+        </Button>
       </form>
 
       {error && <p>{error}</p>}

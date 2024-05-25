@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Button } from '../../components/ui';
 
 export const HomePage = () => {
   return (
@@ -54,7 +54,9 @@ export const HomePage = () => {
 
       <p className="mb-5">Happy subnetting!</p>
 
-      <Link to="/calculator">Go to IP Calculator</Link>
+      <Button isAppLink to="/calculator">
+        Go to IP Calculator
+      </Button>
     </div>
   );
 };
