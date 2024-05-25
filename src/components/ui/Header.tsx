@@ -5,6 +5,8 @@ import { auth } from '../../config';
 import { authSelectors } from '../../redux/auth/selectors';
 import { useAppSelector } from '../../redux/hooks';
 
+import { Logo } from './Logo';
+
 export const Header = () => {
   const isUserLoggedIn = useAppSelector(authSelectors.selectIsUserLoggedIn);
 
@@ -18,12 +20,12 @@ export const Header = () => {
 
   return (
     <header className="py-3 w-full bg-green-300">
-      <div className="container flex">
-        <Link to="/" className="mr-auto">
-          Logo
+      <div className="container flex items-center">
+        <Link to="/" className="mr-auto" title="IP Calculator">
+          <Logo />
         </Link>
         <nav>
-          <ul className="flex gap-5">
+          <ul className="flex items-center gap-5">
             <li>
               <NavLink
                 to="/"
