@@ -2,7 +2,7 @@ import { Link, Outlet } from 'react-router-dom';
 
 export const CalculatorPage = () => {
   return (
-    <div className="container mx-auto py-5">
+    <div className="container py-5">
       <h1 className="font-bold text-2xl mb-4">IP Calculator / IP Subnetting</h1>
 
       <ul className="flex mb-4">

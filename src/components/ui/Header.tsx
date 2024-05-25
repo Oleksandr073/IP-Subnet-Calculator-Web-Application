@@ -18,7 +18,7 @@ export const Header = () => {
 
   return (
     <header className="py-3 w-full bg-green-300">
-      <div className="container mx-auto flex">
+      <div className="container flex">
         <Link to="/" className="mr-auto">
           Logo
         </Link>

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export const HomePage = () => {
   return (
-    <div className="container mx-auto py-5">
+    <div className="container py-5">
       <h1 className="text-2xl font-bold mb-4">IP Calculator / IP Subnetting</h1>
 
       <h2 className="mb-2 font-semibold text-lg">
