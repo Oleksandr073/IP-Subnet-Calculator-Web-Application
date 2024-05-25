@@ -22,7 +22,7 @@ export const IPInformation = () => {
 
   return (
     <div>
-      <div>
+      <div className="mb-3">
         <SimpleIPCalculatorForm onSubmit={onSubmitHandler} />
       </div>
 

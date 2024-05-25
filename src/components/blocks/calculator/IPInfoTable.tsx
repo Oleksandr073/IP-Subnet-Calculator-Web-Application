@@ -5,7 +5,7 @@ type Props = {
 };
 export const IPInfoTable = ({ ipInfo }: Props) => {
   return (
-    <div className="border py-2 px-4 inline-block">
+    <div className="border py-2 px-4 inline-block rounded-md">
       <table className="table-fixed font-monospace">
         <tbody>
           <tr>
