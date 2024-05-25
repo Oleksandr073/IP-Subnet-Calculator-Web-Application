@@ -1,9 +1,9 @@
 import { signOut } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 
-import { auth } from '../config';
-import { authSelectors } from '../redux/auth/selectors';
-import { useAppSelector } from '../redux/hooks';
+import { auth } from '../../config';
+import { authSelectors } from '../../redux/auth/selectors';
+import { useAppSelector } from '../../redux/hooks';
 
 export const Header = () => {
   const isUserLoggedIn = useAppSelector(authSelectors.selectIsUserLoggedIn);
