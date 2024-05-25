@@ -20,7 +20,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="py-3 w-full bg-green-300">
+    <header className="py-3 w-full bg-green-300 fixed">
       <div className="container flex items-center">
         <Link to="/" className="mr-auto" title="IP Calculator">
           <Logo />
