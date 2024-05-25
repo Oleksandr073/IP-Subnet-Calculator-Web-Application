@@ -1,6 +1,6 @@
-import { onAuthStateChanged, User } from 'firebase/auth';
+import { onAuthStateChanged, signOut, User } from 'firebase/auth';
 import { eventChannel } from 'redux-saga';
-import { call, put, take } from 'redux-saga/effects';
+import { call, fork, put, take, takeEvery } from 'redux-saga/effects';
 
 import { auth } from '../../config';
 import { getUserInfo } from '../../utils';
@@ -20,6 +20,18 @@ function createAuthStateChangeChannel() {
   });
 }
 
+function* logOutWorker() {
+  try {
+    yield call(signOut, auth);
+  } catch {
+    // nothing to do
+  }
+}
+
+function* logOutWatcher() {
+  yield takeEvery(authSlice.actions.logOut, logOutWorker);
+}
+
 export function* authStateWatcher() {
   const authStateChannel = (yield call(
     createAuthStateChangeChannel,
@@ -32,6 +44,7 @@ export function* authStateWatcher() {
     } else {
       const userInfo = getUserInfo(user);
       yield put(authSlice.actions.setUserInfo(userInfo));
+      yield fork(logOutWatcher);
     }
   }
 }

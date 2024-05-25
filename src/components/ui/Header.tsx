@@ -1,22 +1,19 @@
 import clsx from 'clsx';
-import { signOut } from 'firebase/auth';
 import { Link, NavLink } from 'react-router-dom';
 
-import { auth } from '../../config';
 import { authSelectors } from '../../redux/auth/selectors';
-import { useAppSelector } from '../../redux/hooks';
+import { authSlice } from '../../redux/auth/slice';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
 
 import { Logo } from './Logo';
 
 export const Header = () => {
+  const dispatch = useAppDispatch();
+
   const isUserLoggedIn = useAppSelector(authSelectors.selectIsUserLoggedIn);
 
-  const handleLogOut = async () => {
-    try {
-      await signOut(auth);
-    } catch {
-      // nothing to do
-    }
+  const handleLogOut = () => {
+    dispatch(authSlice.actions.logOut());
   };
 
   return (
