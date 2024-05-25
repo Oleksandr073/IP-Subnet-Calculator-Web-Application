@@ -4,6 +4,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
+import { IPInformation, IPSubnetting } from './components/blocks';
 import { MainLayout } from './components/layout';
 import { authSelectors } from './redux/auth/selectors';
 import { useAppSelector } from './redux/hooks';
@@ -38,6 +39,16 @@ const router = createBrowserRouter([
       {
         path: '/calculator',
         element: <CalculatorPage />,
+        children: [
+          {
+            path: '/calculator/',
+            element: <IPInformation />,
+          },
+          {
+            path: '/calculator/subnetting',
+            element: <IPSubnetting />,
+          },
+        ],
       },
       {
         path: '/login',

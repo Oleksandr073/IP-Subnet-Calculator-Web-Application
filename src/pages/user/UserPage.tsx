@@ -1,7 +1,7 @@
 export const UserPage = () => {
   return (
-    <div>
-      <p>user page</p>
+    <div className="container mx-auto py-5">
+      <h2 className="font-bold text-2xl mb-4">User Information</h2>
     </div>
   );
 };
