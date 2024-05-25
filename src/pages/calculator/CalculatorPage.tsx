@@ -1,16 +1,35 @@
-import { Link, Outlet } from 'react-router-dom';
+import clsx from 'clsx';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 
 export const CalculatorPage = () => {
+  const location = useLocation();
+  const isIPInformation = location.pathname === '/calculator';
+  const isIPSubnetting = location.pathname === '/calculator/subnetting';
+
   return (
     <div className="container py-5">
       <h1 className="font-bold text-2xl mb-4">IP Calculator / IP Subnetting</h1>
 
       <ul className="flex mb-4">
-        <li className="border py-2 px-4">
-          <Link to="/calculator/">IP Information</Link>
+        <li>
+          <Link
+            to=""
+            className={clsx('border border-gray-400 py-2 px-4', {
+              'bg-gray-200': isIPInformation,
+            })}
+          >
+            IP Information
+          </Link>
         </li>
-        <li className="border py-2 px-4">
-          <Link to="/calculator/subnetting">IP Subnetting</Link>
+        <li>
+          <Link
+            to="subnetting"
+            className={clsx('border border-gray-400 py-2 px-4', {
+              'bg-gray-200': isIPSubnetting,
+            })}
+          >
+            IP Subnetting
+          </Link>
         </li>
       </ul>
 

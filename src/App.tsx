@@ -41,11 +41,11 @@ const router = createBrowserRouter([
         element: <CalculatorPage />,
         children: [
           {
-            path: '/calculator/',
+            path: '',
             element: <IPInformation />,
           },
           {
-            path: '/calculator/subnetting',
+            path: 'subnetting',
             element: <IPSubnetting />,
           },
         ],
