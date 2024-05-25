@@ -43,7 +43,7 @@ export const SimpleIPCalculatorForm = ({
   return (
     <div>
       <form onSubmit={onSubmitHandler}>
-        <div className="flex flex-wrap items-end mb-3">
+        <div className="flex flex-wrap items-end mb-3 -mt-1">
           <div className="mt-1">
             <Input
               value={ipAddress}

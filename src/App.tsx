@@ -4,7 +4,11 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import { IPInformation, IPSubnetting } from './components/blocks';
+import {
+  AdvancedSubnetting,
+  IPInformation,
+  SingleSubnetting,
+} from './components/blocks';
 import { MainLayout } from './components/layout';
 import { authSelectors } from './redux/auth/selectors';
 import { useAppSelector } from './redux/hooks';
@@ -44,8 +48,12 @@ const router = createBrowserRouter([
             element: <IPInformation />,
           },
           {
-            path: 'subnetting',
-            element: <IPSubnetting />,
+            path: 'single-subnetting',
+            element: <SingleSubnetting />,
+          },
+          {
+            path: 'advanced-subnetting',
+            element: <AdvancedSubnetting />,
           },
         ],
       },

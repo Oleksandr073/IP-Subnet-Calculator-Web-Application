@@ -8,7 +8,7 @@ import {
   SimpleIPCalculatorForm,
 } from './SimpleIPCalculatorForm';
 
-export const IPSubnetting = () => {
+export const SingleSubnetting = () => {
   const [ipInfo, setIpInfo] = useState<IPInfo | null>(null);
 
   const onSubmitHandler = (data: CalculatorFormData) => {
