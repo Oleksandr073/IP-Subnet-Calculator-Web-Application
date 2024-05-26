@@ -34,9 +34,12 @@ const addSpaceAfterMaskBits = (ipBinary: string, mask: number) => {
   return ipBinary.slice(0, index) + ' ' + ipBinary.slice(index);
 };
 
-export function calculateIPInfo(inputAddress: string, inputMask: string) {
+export function calculateIPInfo(
+  inputAddress: string,
+  inputMask: string | number,
+) {
   const netmask = Number(inputMask);
-  if (!isIPv4(inputAddress) || netmask < 1 || netmask > 31) {
+  if (!isIPv4(inputAddress) || netmask < 1) {
     throw new Error('input IP or mask is not correct');
   }
 
@@ -120,8 +123,8 @@ export type IPInfo = ReturnType<typeof calculateIPInfo>;
 
 export const getSubnetsDecimalAddresses = (
   networkIpBinary: string,
-  oldMask: string,
-  newMask: string,
+  oldMask: string | number,
+  newMask: string | number,
 ) => {
   const ipBinaryNumber = networkIpBinary.replace(/\./g, '');
   const fromMask = Number(oldMask);
@@ -147,4 +150,78 @@ export const getSubnetsDecimalAddresses = (
   }
 
   return subnetsBinaryWithOutDots.map(addDotsToIP).map(ipToDecimal);
+};
+
+const findClosestMask = (hosts: number) => {
+  for (let i = 1; i < 32; i++) {
+    const hostsAmount = 2 ** i - 2;
+    if (hosts <= hostsAmount) {
+      return 32 - i;
+    }
+  }
+  throw new Error('Cannot find mask to fit these hosts: ' + hosts);
+};
+
+export const multiSubnetting = (
+  networkIpBinary: string,
+  mask: number,
+  subnetsHosts: number[],
+) => {
+  const outputSubnetsAddresses: { address: string; mask: number }[] = [];
+  const sortedHosts = [...subnetsHosts].sort((a, b) => b - a);
+  const newMasks: {
+    [key in string]: number;
+  } = {};
+
+  // eslint-disable-next-line @typescript-eslint/prefer-for-of
+  for (let i = 0; i < sortedHosts.length; i++) {
+    const hosts = sortedHosts[i];
+    const newMask = findClosestMask(hosts);
+    if (newMask < mask) {
+      throw new Error('Cannot split your network to fit these hosts: ' + hosts);
+    }
+    newMasks[String(newMask)] = newMasks[String(newMask)]
+      ? newMasks[String(newMask)] + 1
+      : 1;
+  }
+
+  const sortedMaskKeys = Object.keys(newMasks)
+    .map(Number)
+    .sort((a, b) => a - b);
+  let prevIpBinary = networkIpBinary;
+  let prevMask = mask;
+  let isSubnetsSplitted = false;
+  for (const newMask of sortedMaskKeys) {
+    if (isSubnetsSplitted) {
+      throw new Error("can't split addresses more");
+    }
+    const newMaskAmount = newMasks[String(newMask)];
+    if (newMaskAmount > 2 ** (newMask - prevMask)) {
+      throw new Error(
+        `Cannot split network ${newMaskAmount} times for ${newMask} mask`,
+      );
+    }
+
+    const subnetAddresses = getSubnetsDecimalAddresses(
+      prevIpBinary,
+      prevMask,
+      newMask,
+    );
+
+    const subnetsToUse = subnetAddresses.slice(0, newMaskAmount);
+    const subnetsToNextSplit = subnetAddresses.slice(newMaskAmount);
+
+    outputSubnetsAddresses.push(
+      ...subnetsToUse.map((item) => ({ address: item, mask: newMask })),
+    );
+
+    if (subnetsToNextSplit.length === 0 || !subnetsToNextSplit[0]) {
+      isSubnetsSplitted = true;
+    }
+
+    prevIpBinary = ipToBinary(subnetsToNextSplit[0]);
+    prevMask = newMask;
+  }
+
+  return outputSubnetsAddresses;
 };
