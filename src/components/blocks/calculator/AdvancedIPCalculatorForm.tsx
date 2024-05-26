@@ -87,7 +87,7 @@ export const AdvancedIPCalculatorForm = ({ onSubmit }: Props) => {
         <p className="mb-1 text-lg font-semibold">Subnets:</p>
         <div className="flex mb-2 gap-3 flex-wrap items-end">
           {subnetsHosts.map((hosts, index, arr) => (
-            <div key={String(index) + String(hosts)} className="flex items-end">
+            <div key={index} className="flex items-end">
               <Input
                 value={hosts.toString()}
                 onChange={(value) => setSubnetHosts(Number(value), index)}
@@ -97,7 +97,7 @@ export const AdvancedIPCalculatorForm = ({ onSubmit }: Props) => {
               {arr.length > 1 && (
                 <button
                   type="button"
-                  className="ml-1 mb-0.5 font-bold"
+                  className="ml-1 mb-0.5 font-bold text-gray-500"
                   onClick={() => removeSubnetHosts(index)}
                 >
                   ✖
