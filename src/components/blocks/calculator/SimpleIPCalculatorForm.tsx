@@ -28,15 +28,18 @@ export const SimpleIPCalculatorForm = ({
       return;
     }
     if (!isIPv4(ipAddress)) {
-      setError('input IP is not correct');
+      setError('IP address is not correct');
       return;
     }
     if (Number(mask) < 1 || Number(mask) > 31) {
-      setError('input mask is not correct');
+      setError('Mask is not correct');
       return;
     }
-    if (isMovingMask && Number(newMask) <= Number(mask)) {
-      setError('input new mask is not correct');
+    if (
+      isMovingMask &&
+      (Number(newMask) <= Number(mask) || Number(newMask) > 31)
+    ) {
+      setError('Subnet mask is not correct');
       return;
     }
     setError('');
@@ -46,7 +49,7 @@ export const SimpleIPCalculatorForm = ({
   return (
     <div>
       <form onSubmit={onSubmitHandler}>
-        <div className="flex flex-wrap items-end mb-3 -mt-1">
+        <div className="flex flex-wrap items-end -mt-1 mb-2">
           <div className="mt-1">
             <Input
               value={ipAddress}
@@ -76,10 +79,9 @@ export const SimpleIPCalculatorForm = ({
             </div>
           )}
         </div>
+        {error && <p className="mb-2 text-red-600 font-semibold">{error}</p>}
         <Button text="Calculate!" type="submit" />
       </form>
-
-      {error && <p>{error}</p>}
     </div>
   );
 };
