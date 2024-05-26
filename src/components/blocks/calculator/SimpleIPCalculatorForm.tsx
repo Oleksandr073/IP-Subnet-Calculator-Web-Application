@@ -25,6 +25,7 @@ export const SimpleIPCalculatorForm = ({
   const onSubmitHandler: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     if (!ipAddress || !mask || (isMovingMask && !newMask)) {
+      setError('Fill all fields');
       return;
     }
     if (!isIPv4(ipAddress)) {

@@ -27,6 +27,14 @@ export const AdvancedIPCalculatorForm = ({ onSubmit }: Props) => {
     });
   };
 
+  const removeSubnetHosts = (index: number) => {
+    setSubnetsHosts((prevSubnetsHosts) => {
+      const newSubnetsHosts = [...prevSubnetsHosts];
+      newSubnetsHosts.splice(index, 1);
+      return newSubnetsHosts;
+    });
+  };
+
   const onAddSubnet = () => {
     setSubnetsHosts((hosts) => [...hosts, 30]);
   };
@@ -35,7 +43,11 @@ export const AdvancedIPCalculatorForm = ({ onSubmit }: Props) => {
     e.preventDefault();
     const notNullHosts = subnetsHosts.filter((value) => value > 0);
     setSubnetsHosts(notNullHosts.length > 0 ? notNullHosts : [100]);
-    if (!ipAddress || !mask || notNullHosts.length === 0) {
+    if (notNullHosts.length === 0) {
+      return;
+    }
+    if (!ipAddress || !mask) {
+      setError('Fill all fields');
       return;
     }
     if (!isIPv4(ipAddress)) {
@@ -74,14 +86,24 @@ export const AdvancedIPCalculatorForm = ({ onSubmit }: Props) => {
         </div>
         <p className="mb-1 text-lg font-semibold">Subnets:</p>
         <div className="flex mb-2 gap-3 flex-wrap items-end">
-          {subnetsHosts.map((hosts, index) => (
-            <Input
-              key={index}
-              value={hosts.toString()}
-              onChange={(value) => setSubnetHosts(Number(value), index)}
-              name={`subnet-${numberToLetters(hosts).toLowerCase()}`}
-              label={`Subnet ${numberToLetters(index + 1)}`}
-            />
+          {subnetsHosts.map((hosts, index, arr) => (
+            <div key={String(index) + String(hosts)} className="flex items-end">
+              <Input
+                value={hosts.toString()}
+                onChange={(value) => setSubnetHosts(Number(value), index)}
+                name={`subnet-${numberToLetters(hosts).toLowerCase()}`}
+                label={`Subnet ${numberToLetters(index + 1)}`}
+              />
+              {arr.length > 1 && (
+                <button
+                  type="button"
+                  className="ml-1 mb-0.5 font-bold"
+                  onClick={() => removeSubnetHosts(index)}
+                >
+                  ✖
+                </button>
+              )}
+            </div>
           ))}
           <Button text="Add subnet" type="button" onClick={onAddSubnet} />
         </div>
