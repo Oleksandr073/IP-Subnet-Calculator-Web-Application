@@ -15,9 +15,6 @@ export const IPInformation = () => {
     const { ipAddress, mask } = data;
     const result = calculateIPInfo(ipAddress, mask);
     setIpInfo(result);
-
-    // eslint-disable-next-line no-console
-    console.log({ ipAddress, mask });
   };
 
   return (
