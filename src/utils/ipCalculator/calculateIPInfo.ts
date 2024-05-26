@@ -136,7 +136,8 @@ export const getSubnetsDecimalAddresses = (
 
   const subnetsAmount = 2 ** newBitsAmount;
 
-  for (let i = 0; i < subnetsAmount; i++) {
+  // show only first 100 subnets
+  for (let i = 0; i < subnetsAmount && i < 100; i++) {
     const newSubnetEnding = toBinary(i);
     const newSubnetEndingStr =
       newSubnetEnding.length < newBitsAmount
