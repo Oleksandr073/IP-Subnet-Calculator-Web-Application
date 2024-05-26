@@ -11,8 +11,7 @@ import {
 export const IPInformation = () => {
   const [ipInfo, setIpInfo] = useState<IPInfo | null>(null);
 
-  const onSubmitHandler = (data: CalculatorFormData) => {
-    const { ipAddress, mask } = data;
+  const onSubmitHandler = ({ ipAddress, mask }: CalculatorFormData) => {
     const result = calculateIPInfo(ipAddress, mask);
     setIpInfo(result);
   };

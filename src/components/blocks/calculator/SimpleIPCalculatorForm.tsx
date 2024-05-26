@@ -38,7 +38,7 @@ export const SimpleIPCalculatorForm = ({
     }
     if (
       isMovingMask &&
-      (Number(newMask) <= Number(mask) || Number(newMask) > 31)
+      (Number(newMask) <= Number(mask) || Number(newMask) > 32)
     ) {
       setError('Subnet mask is not correct');
       return;

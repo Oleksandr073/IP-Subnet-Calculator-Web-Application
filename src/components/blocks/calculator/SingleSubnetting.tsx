@@ -16,8 +16,11 @@ export const SingleSubnetting = () => {
   const [ipInfo, setIpInfo] = useState<IPInfo | null>(null);
   const [subnetsIpInfo, setSubnetsIpInfo] = useState<IPInfo[]>([]);
 
-  const onSubmitHandler = (data: CalculatorFormData) => {
-    const { ipAddress, mask, newMask } = data;
+  const onSubmitHandler = ({
+    ipAddress,
+    mask,
+    newMask,
+  }: CalculatorFormData) => {
     if (!newMask) return;
 
     const inputAddressInfo = calculateIPInfo(ipAddress, mask);
